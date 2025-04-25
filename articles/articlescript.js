@@ -3,8 +3,8 @@
 //    fetch('articles.json')
 //   .then(res => res.json())
 //   .then(data => {
-//     console.log(data[0]);
-//     document.querySelector("body").innerHTML=data[0].content;
+//     console.log(data[1]);
+//     document.querySelector("body").innerHTML=data[20].content;
 //   });
 // }
 
