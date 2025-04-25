@@ -1,23 +1,14 @@
 const content_body= document.querySelector("#content-body");
 
-// content_body.innerHTML=5;
 const sectionId = getQueryParam('id');
-// console.log(sectionId);
-// console.log(typeof sectionId);
+
 function _fetch(){
     console.log("fetching Articles");
    fetch('../articles/articles.json')
   .then(res => res.json())
   .then(data => {
     filter(data);
-    // console.log(typeof sectionId);
-    // console.log(data[0].section_id[1]);
-    // console.log(sectionId);
-    // const articles = data.find(el => el.section_id[0] == sectionId);
-    // console.log(articles);
-    // articles? display(articles) :null;
-    
-    
+ 
   });
 }
 
@@ -59,14 +50,10 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
-  // "3" or "7", etc.
-// console.log(sectionId);
 
 function filter(data){
     const articles = data.filter(el => el.section_id === sectionId);
     display(articles);
     console.log(articles);
     
-    // console.log(articles);
-    // articles? display(articles) :null;
 }
