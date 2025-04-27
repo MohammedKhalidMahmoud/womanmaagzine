@@ -8,7 +8,8 @@ function _fetch(){
   .then(res => res.json())
   .then(data => {
     filter(data);
- 
+    console.log(data);
+    // display(data)
   });
 }
 
@@ -20,7 +21,7 @@ function display(articles){
         return `<div class="w-full md:w-1/2 lg:w-1/3 px-2" >
             <div class="mt-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
                 <a href="../articles/article.html?id=${el.id}" class="">
-                    <img class="w-full rounded-t-lg  mb-1 block mx-auto h-[500px]" src="../images/section${sectionId}/article${index+1}/1.jpeg" alt="" />
+                    <img class="w-full rounded-t-lg  mb-1 block mx-auto h-[500px]" src="../tabs/tab${sectionId}/${index+1}.jpeg" alt="" />
                 </a>
                 <div class="p-5">
                     <div class="tags">
@@ -53,35 +54,27 @@ function getQueryParam(param) {
 
 function filter(data){
     const articles = data.filter(el => el.section_id === sectionId);
-    display(articles);
     console.log(articles);
+    display(articles);
+    
     
 }
 let sectionName;
 switch (sectionId) {
     case '1':
-        sectionName = "هي تقود";
+        sectionName = "أخبار ";
         break;
     case '2':
-        sectionName = "ألوان الفن";
+        sectionName = "مقالات ";
         break;
     case '3':
-        sectionName = "همك همنا";
+        sectionName = "تقارير ";
         break;
     case '4':
-        sectionName = "قادرون باختلاف";
+        sectionName = "تحقيقات ";
         break;
     case '5':
-        sectionName = "بأديدنا نغير";
-        break;
-    case '6':
-        sectionName = "صحتك بالدنيا";
-        break;
-    case '7':
-        sectionName = "نمط حياة";
-        break;
-    case '8':
-        sectionName = "كيان الأرض";
+        sectionName = "حوارات ";
         break;
    
 }

@@ -3,7 +3,7 @@ function hello(){
    fetch('articles.json')
   .then(res => res.json())
   .then(data => {
-    console.log(data[1]);
+    console.log(data);
     document.querySelector("body").innerHTML=data[articleId-1].content;
   });
 }
