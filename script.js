@@ -1,6 +1,5 @@
-import 'flowbite';
-import Alpine from 'alpinejs';
-import collapse from '@alpinejs/collapse';
+// import 'Alpine'
+
 {/* <div class="w-full md:w-1/2 lg:w-1/3 px-4">
         <div class=" bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
             <a href="#" class="">
@@ -56,7 +55,7 @@ function display(data){
             </div>  
         </div>  `
     }).join('')
-    container.innerHTML=cartona;
+    // container.innerHTML=cartona;
 }
 
 
@@ -76,25 +75,7 @@ fetch_articles();
 
 
 // Initialize Alpine.js
-Alpine.plugin(collapse);
-Alpine.start();
+// Alpine.plugin(collapse);
+// Alpine.start();
 
 // Initialize the carousel manually if needed
-document.addEventListener('DOMContentLoaded', function() {
-  // Carousel initialization code will go here
-  // Flowbite should automatically initialize elements with data-carousel attributes
-  
-  // Example: Access carousel instance
-  const carousel = new Flowbite.Carousel(
-    document.getElementById('default-carousel'),
-    {
-      interval: 3000, // 3 seconds
-      wrap: true      // infinite loop
-    }
-  );
-  
-  // You can now control the carousel programmatically
-  // carousel.next();
-  // carousel.prev();
-  // carousel.goTo(2);
-});
