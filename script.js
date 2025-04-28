@@ -1,50 +1,29 @@
-// import 'Alpine'
-
-{/* <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-        <div class=" bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
-            <a href="#" class="">
-                <img class="rounded-t-lg h-70 mt-7 mb-1 block mx-auto" src="./imgs/html.png" alt="" />
-            </a>
-            <div class="p-5">
-                <div class="tags">
-                    <div class="bg-[#f25287] w-fit rounded-md px-2 py-0.5 text-white text-xs font-semibold ml-auto">حاجز مكان</div>
-                </div>
-                <a href="#">
-                    <h5 class="text-right mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">حاجز مكان</h5>
-                </a>
-                
-                <p class="text-right mb-3 font-normal text-gray-700 dark:text-gray-400">حاجز مكان</p>
-                <a href="#" class="block w-fit ml-auto  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <i class="fa-solid fa-arrow-left text-white mr-1"></i>
-                    اقرأ المزيد
-                     <!-- <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg> -->
-                    
-                </a>
-                
-            </div>
-        </div>    
-    </div> */}
+const carousel_div=document.querySelector("#carousel");
+const next_btn=document.querySelector("#next_button");
+const prev_btn=document.querySelector("#previous_button");
+console.log(next_btn);
+console.log(prev_btn);
+// console.log(carousel_div);
 const container=document.querySelector("#content_here")
 function display(data){
-    let cartona='';
-    cartona=data.map(el=>{
-        return `<div class="w-full md:w-1/2 lg:w-1/3 px-4" >
-            <div class=" bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
-                <a href="#" class="">
-                    <img class="rounded-t-lg h-70 mt-7 mb-1 block mx-auto" src="./imgs/html.png" alt="" />
+    let cartona=''
+    const shuffled = data.sort(() => 0.5 - Math.random());
+    cartona=shuffled.map((el,index)=>{
+        return `<div class="w-full md:w-1/2 lg:w-1/3 px-2" >
+            <div class="mt-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
+                <a href="../articles/article.html?id=${el.id}" class="">
+                    <img class="w-full rounded-t-lg  mb-1 block mx-auto h-[500px]" src="../tabs/tab${el.section_id}/${index+1}.jpeg" alt="" />
                 </a>
                 <div class="p-5">
                     <div class="tags">
-                        <div class="bg-[#f25287] w-fit rounded-md px-2 py-0.5 text-white text-xs font-semibold ml-auto">حاجز مكان</div>
+                        <div class="bg-[#f25287] w-fit rounded-md px-2 py-1 mb-1 text-white text-xs font-semibold ml-auto">${el.section_name}</div>
                     </div>
-                    <a href="#">
-                        <h5 class="text-right mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">حاجز مكان</h5>
+                    <a href="../articles/article.html?id=${el.id}">
+                        <h5 class="text-right mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${el.title}</h5>
                     </a>
                     
-                    <p class="text-right mb-3 font-normal text-gray-700 dark:text-gray-400">حاجز مكان</p>
-                    <a href="#" class="block w-fit ml-auto  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <p class="text-right mb-3 font-normal text-gray-700 dark:text-gray-400">${el.description}</p>
+                    <a href="../articles/article.html?id=${el.id}" class="mt-1 block w-fit ml-auto  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-arrow-left text-white mr-1"></i>
                         اقرأ المزيد
                         <!-- <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -54,12 +33,15 @@ function display(data){
                 </div>
             </div>  
         </div>  `
-    }).join('')
-    // container.innerHTML=cartona;
+    }).join('');
+    container.innerHTML=cartona;
 }
 
-
-
+const ul=document.querySelector("#ul_id")
+function fun2(){
+    ul.classList.toggle("hidden")
+    // console.log(ul);
+}
 
 function fetch_articles(){
     fetch('./articles/articles.json')
@@ -74,8 +56,99 @@ fetch_articles();
 
 
 
-// Initialize Alpine.js
-// Alpine.plugin(collapse);
-// Alpine.start();
 
-// Initialize the carousel manually if needed
+const divs = document.querySelectorAll('#counter');
+divs.forEach(div => {
+    const target = parseInt(div.getAttribute('data-target'));
+    const speed = 2000 / target;
+    let counter = 0;
+    
+    // Immediately display the initial value if you prefer
+    div.innerHTML = counter;
+    
+    const intervalId = setInterval(() => {
+        if (counter >= target) {
+            clearInterval(intervalId);
+            return;
+        }
+        counter++;
+        div.innerHTML = counter;
+    }, speed);
+});
+
+
+
+/* <div class="w-[500px] h-full  flex-shrink-0 mr-2 shadow-md">
+
+                <div class="w-full md:w-1/2 lg:w-1/3 px-2" >
+                    <div class="mt-4 w-[500px] bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
+                        <a href="./articles/article.html?id=${el.id}" class="">
+                            <img class="w-full rounded-t-lg  mb-1 block mx-auto h-[500px]" src="./tabs/tab1/1.jpeg" alt="" />
+                        </a>
+                        <div class="p-5">
+                            <div class="tags">
+                                <div class="bg-[#f25287] w-fit rounded-md px-2 py-1 mb-1 text-white text-xs font-semibold ml-auto">${sectionName}</div>
+                            </div>
+                            <a href="../articles/article.html?id=${el.id}">
+                                <h5 class="text-right mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${el.title}</h5>
+                            </a>
+                            
+                            <p class="text-right mb-3 font-normal text-gray-700 dark:text-gray-400">${el.description}</p>
+                            <a href="../articles/article.html?id=${el.id}" class="mt-1 block w-fit ml-auto  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <i class="fa-solid fa-arrow-left text-white mr-1"></i>
+                                اقرأ المزيد
+                                <!-- <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                </svg> -->
+                            </a> 
+                        </div>
+                    </div>  
+                </div> 
+                <!-- <img class="w-full rounded-lg" src="./tabs/tab1/1.jpeg" alt=""> -->
+            </div> */
+let cartona='';
+// for (let i = 0; i < 10; i++) {
+//     cartona+=` <div class="w-full md:w-1/2 lg:w-1/3 px-4" >
+//             <div class=" bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
+                
+//                 <div class="w-[500px]   flex-shrink-0 mr-2 shadow-md rounded-lg">
+//                     <img class="w-full rounded-lg" src="./tabs/tab1/1.jpeg" alt="">
+//                 </div>
+//                 <div class="p-5">
+//                     <div class="tags">
+//                         <div class="bg-[#f25287] w-fit rounded-md px-2 py-0.5 text-white text-xs font-semibold ml-auto">حاجز مكان</div>
+//                     </div>
+//                     <a href="#">
+//                         <h5 class="text-right mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">حاجز مكان</h5>
+//                     </a>
+                    
+//                     <p class="text-right mb-3 font-normal text-gray-700 dark:text-gray-400">حاجز مكان</p>
+//                     <a href="#" class="block w-fit ml-auto  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+//                         <i class="fa-solid fa-arrow-left text-white mr-1"></i>
+//                         اقرأ المزيد
+//                         <!-- <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+//                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+//                         </svg> -->
+//                     </a> 
+//                 </div>
+//             </div>  
+//         </div>  `
+// }
+// carousel_div.innerHTML=cartona;
+
+
+
+
+// next_btn.addEventListener("click",function(){
+//     console.log("sliding right")
+// })
+
+
+// prev_btn.addEventListener("click",function(){
+//     console.log("sliding left")
+// })
+
+
+
+
+

@@ -4,7 +4,9 @@ function hello(){
   .then(res => res.json())
   .then(data => {
     console.log(data);
-    document.querySelector("body").innerHTML=data[articleId-1].content;
+    let article=data.filter(el => el.id === articleId);
+    // console.log(article)
+    document.querySelector("body").innerHTML=article[0].content;
   });
 }
 

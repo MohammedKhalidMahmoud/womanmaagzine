@@ -1,5 +1,9 @@
 const content_body= document.querySelector("#content-body");
-
+const ul=document.querySelector("#ul_id")
+function fun2(){
+    ul.classList.toggle("hidden")
+    // console.log(ul);
+}
 const sectionId = getQueryParam('id');
 
 function _fetch(){
