@@ -21,7 +21,7 @@ function display(data){
             cartona+=`<div class="w-full md:w-1/2 lg:w-1/3 px-2" >
                 <div class="mt-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
                     <a href="../articles/article.html?id=${el.id}" class="">
-                        <img class="w-full rounded-t-lg  mb-1 block mx-auto h-[500px]" src="../tabs/tab${j+1}/${i+1}.jpeg" alt="" />
+                        <img class="w-full rounded-t-lg  mb-1 block mx-auto h-[500px]" src="/tabs/tab${j+1}/${i+1}.jpeg" alt="" />
                     </a>
                     <div class="p-5">
                         <div class="tags">
@@ -58,7 +58,8 @@ function fun2(){
 }
 
 function fetch_articles(){
-    fetch('./articles/articles.json')
+    // fetch('./articles/articles.json')
+    fetch(`${window.location.pathname.includes('github.io') ? '/repo-name/' : '/'}articles/articles.json`)
     .then(data=> data.json())
     .then(data=>{
         console.log(data);
