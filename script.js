@@ -1,3 +1,4 @@
+'use strict';
 const carousel_div=document.querySelector("#carousel");
 
 
@@ -13,7 +14,7 @@ function display(data){
     // const shuffled = data.sort(() => 0.5 - Math.random());
     for(let j = 0; j < 5; j++) {
         cartona='';
-        articles=data.filter(el=> j+1===+el.section_id);
+        let articles=data.filter(el=> j+1===+el.section_id);
         console.log(articles)
         for(let i=0;i<3;i++){
             let el=articles[i];
